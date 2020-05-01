@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <MenuBar user={user} />
-        <Router>
+        <Router className="main-router">
           <Homepage path="/" />
           <DisplayPage path="/articles" />
         </Router>
