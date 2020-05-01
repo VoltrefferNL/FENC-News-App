@@ -3,6 +3,7 @@ import "./App.css";
 import { Router } from "@reach/router";
 import MenuBar from "./components/MenuBar";
 import DisplayPage from "./components/DisplayPage";
+import Homepage from "./components/Homepage";
 
 class App extends Component {
   state = {
@@ -15,7 +16,10 @@ class App extends Component {
     return (
       <div className="App">
         <MenuBar user={user} />
-        <DisplayPage />
+        <Router>
+          <Homepage path="/" />
+          <DisplayPage path="/articles" />
+        </Router>
       </div>
     );
   }
