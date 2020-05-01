@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  /* display: grid;
+  grid-template-areas: "header header" "articles main";
+  grid-template-columns: 100px auto;
+  grid-template-rows: 100px auto; */
 }
 
 body {
@@ -14,4 +18,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.navigation {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
