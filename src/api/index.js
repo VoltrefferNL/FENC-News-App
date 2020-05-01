@@ -6,3 +6,9 @@ export const getTopics = () => {
     return topics;
   });
 };
+
+export const getArticles = () => {
+  return axios.get(`${apiUrl}/articles`).then(({ data: { articles } }) => {
+    return articles;
+  });
+};

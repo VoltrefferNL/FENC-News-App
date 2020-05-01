@@ -19,6 +19,7 @@ class App extends Component {
         <Router className="main-router">
           <Homepage path="/" />
           <DisplayPage path="/articles" />
+          <DisplayPage path="/articles/:queries" />
         </Router>
       </div>
     );

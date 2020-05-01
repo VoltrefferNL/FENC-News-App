@@ -5,12 +5,12 @@
 .content {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 80%;
   margin: auto;
 }
 
 .content .left-article-list {
-  width: 25%;
+  width: 20%;
   list-style: none;
   background-color: aquamarine;
   padding-left: 1em;
@@ -21,6 +21,39 @@
   display: flex;
   color: #282828;
   flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.content .left-article-list .article-list-card {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  background-color: white;
+  padding: 10px;
+}
+
+.content .left-article-list .article-list-card :hover {
+  background-color: darkcyan;
+}
+
+.content .left-article-list .article-list-card .article-list-card-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.content .left-article-list .article-list-card .article-list-card-text p {
+  margin: 0;
+  color: black;
+  letter-spacing: 0.4px;
+  font-size: small;
+}
+
+.content .article-list-card-interactions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .content .content-area {
