@@ -105,3 +105,12 @@
   list-style: none;
   justify-content: space-between;
 }
+
+.comment-card-holder {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-card-holder ul {
+  list-style: none;
+}

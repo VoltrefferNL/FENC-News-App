@@ -1,5 +1,6 @@
 import React from "react";
 import * as api from "../api";
+import Comments from "./Comments";
 
 class ArticleView extends React.Component {
   state = {
@@ -28,7 +29,6 @@ class ArticleView extends React.Component {
   }
 
   render() {
-    const { comments } = this.state;
     const {
       author,
       body,
@@ -58,20 +58,7 @@ class ArticleView extends React.Component {
             <div>Posted on {created_at}</div>
           </div>
         </div>
-        {/* {comments.map(({ author, created_at, votes, body, comment_id }) => {
-          return (
-            <div key="comment_id">
-              <div>
-                <ul>
-                  <li>Up</li>
-                  <li>{votes}</li>
-                  <li>Down</li>
-                </ul>
-              </div>
-              <div></div>
-            </div>
-          );
-        })} */}
+        <Comments article_id={this.props.article_id} />
       </div>
     );
   }
