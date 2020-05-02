@@ -20,7 +20,14 @@ class DisplayPage extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.sort_url !== this.state.sort_url) {
       const { sort_url } = this.state;
-      api.getArticles(sort_url).then((articles) => {
+      const { topic } = this.props;
+      api.getArticles(sort_url, topic).then((articles) => {
+        this.setState({ articles });
+      });
+    } else if (prevProps.topic !== this.props.topic) {
+      const { sort_url } = this.state;
+      const { topic } = this.props;
+      api.getArticles(sort_url, topic).then((articles) => {
         this.setState({ articles });
       });
     }
@@ -29,6 +36,7 @@ class DisplayPage extends Component {
   render() {
     const { articles, article_url, sort_url } = this.state;
     console.log(this.state);
+    console.log(this.props.topic, "DISPLAY");
 
     return (
       <div className="displaypage-container">
@@ -109,7 +117,6 @@ class DisplayPage extends Component {
             )}
           </ul>
           <div className="content-area">
-            "Hello"
             <Router className="Hello?">
               <ArticleView path={`/${sort_url}/:article_id`} {...article_url} />
             </Router>

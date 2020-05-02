@@ -13,11 +13,6 @@ class ArticleView extends React.Component {
     api.getSelectedArticle(article_id).then((article) => {
       this.setState({ article });
     });
-
-    api.getComments(article_id).then((comments) => {
-      console.log(comments);
-      this.setState({ comments });
-    });
   }
 
   componentDidUpdate(prevProps, prevState) {

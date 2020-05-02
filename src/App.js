@@ -6,19 +6,28 @@ import DisplayPage from "./components/DisplayPage";
 import Homepage from "./components/Homepage";
 
 class App extends Component {
-  state = {
-    user: "Niels",
-  };
+  constructor(props) {
+    super(props);
+    this.setTopic = this.setTopic.bind(this);
+    this.state = {
+      user: "Niels",
+      setTopic: "",
+    };
+  }
+  setTopic(setTopic) {
+    this.setState({ setTopic });
+  }
 
   render() {
-    const { user } = this.state;
+    const { user, setTopic } = this.state;
 
     return (
       <div className="App">
-        <MenuBar user={user} />
+        {console.log(this.state, "====== This is in app")}
+        <MenuBar user={user} filterTopic={this.setTopic} />
         <Router className="main-router">
           <Homepage path="/" />
-          <DisplayPage path="/articles/*" />
+          <DisplayPage path="/articles/*" topic={setTopic} />
         </Router>
       </div>
     );

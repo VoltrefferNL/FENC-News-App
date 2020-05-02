@@ -12,6 +12,10 @@ class MenuBar extends Component {
     });
   }
 
+  handleChange(invoke) {
+    this.props.filterTopic(invoke);
+  }
+
   render() {
     const { user } = this.props;
     const { topics } = this.state;
@@ -23,7 +27,13 @@ class MenuBar extends Component {
           </div>
           <ul className="menu">
             <li className="menu-dropdown">
-              <select id="topics">
+              <select
+                id="topics"
+                onChange={(e) => {
+                  this.handleChange(e.target.value);
+                }}
+              >
+                {console.log(this.state, "THIS IS IN MENU")}
                 <option value="">Choose your topic</option>
                 {topics.map(({ slug }) => {
                   return (

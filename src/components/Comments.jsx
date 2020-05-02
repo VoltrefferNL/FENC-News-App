@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api";
+import * as utils from "../utils";
 
 class Comments extends Component {
   state = {
@@ -7,17 +8,15 @@ class Comments extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props, "<<<<<<212");
     const { article_id } = this.props;
     api.getComments(article_id).then((comments) => {
-      console.log(comments, "<--------");
       this.setState({ comments });
     });
   }
 
   render() {
     const { comments } = this.state;
-    console.log(comments, "<<<<<<<<<<<<<<<<<");
+
     return comments.map(({ author, created_at, votes, body, comment_id }) => {
       return (
         <div className="comment-card-holder" key={`${comment_id}`}>
