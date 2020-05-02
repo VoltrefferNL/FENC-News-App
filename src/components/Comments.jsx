@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as api from "../api";
-import * as utils from "../utils";
 
 class Comments extends Component {
   state = {
@@ -8,8 +7,8 @@ class Comments extends Component {
   };
 
   componentDidMount() {
-    const { article_id } = this.props;
-    api.getComments(article_id).then((comments) => {
+    const { article_url } = this.props;
+    api.getComments(article_url).then((comments) => {
       this.setState({ comments });
     });
   }

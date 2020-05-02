@@ -118,7 +118,12 @@ class DisplayPage extends Component {
           </ul>
           <div className="content-area">
             <Router className="Hello?">
-              <ArticleView path={`/${sort_url}/:article_id`} {...article_url} />
+              {this.state.article_url !== "no_article" && (
+                <ArticleView
+                  path={`/${sort_url}/${article_url}`}
+                  article_url={article_url}
+                />
+              )}
             </Router>
           </div>
         </div>
