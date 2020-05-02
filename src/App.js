@@ -18,8 +18,7 @@ class App extends Component {
         <MenuBar user={user} />
         <Router className="main-router">
           <Homepage path="/" />
-          <DisplayPage path="/articles" />
-          <DisplayPage path="/articles/:queries" />
+          <DisplayPage path="/articles/*" />
         </Router>
       </div>
     );

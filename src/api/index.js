@@ -7,8 +7,27 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = () => {
-  return axios.get(`${apiUrl}/articles`).then(({ data: { articles } }) => {
-    return articles;
-  });
+export const getArticles = (sort_by) => {
+  console.log(sort_by);
+  return axios
+    .get(`${apiUrl}/articles`, { params: { sort_by } })
+    .then(({ data: { articles } }) => {
+      return articles;
+    });
+};
+
+export const getSelectedArticle = (article_id) => {
+  return axios
+    .get(`${apiUrl}/articles/${article_id}`)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};
+
+export const getComments = (article_id) => {
+  return axios
+    .get(`${apiUrl}/articles/${article_id}/comments`)
+    .then(({ data: { comments } }) => {
+      return comments;
+    });
 };
