@@ -12,8 +12,8 @@ class MenuBar extends Component {
     });
   }
 
-  handleChange(invoke) {
-    this.props.filterTopic(invoke);
+  handleChange(topic) {
+    this.props.filterTopic(topic);
   }
 
   render() {
@@ -33,7 +33,6 @@ class MenuBar extends Component {
                   this.handleChange(e.target.value);
                 }}
               >
-                {console.log(this.state, "THIS IS IN MENU")}
                 <option value="">Choose your topic</option>
                 {topics.map(({ slug }) => {
                   return (

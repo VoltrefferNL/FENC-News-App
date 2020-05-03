@@ -8,8 +8,6 @@ export const getTopics = () => {
 };
 
 export const getArticles = (sort_by, topic) => {
-  console.log(sort_by);
-  console.log(topic);
   return axios
     .get(`${apiUrl}/articles`, { params: { sort_by, topic } })
     .then(({ data: { articles } }) => {

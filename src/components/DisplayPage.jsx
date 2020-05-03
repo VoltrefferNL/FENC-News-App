@@ -18,26 +18,21 @@ class DisplayPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.sort_url !== this.state.sort_url) {
-      const { sort_url } = this.state;
-      const { topic } = this.props;
+    const { sort_url } = this.state;
+    const { topic } = this.props;
+    prevState.sort_url !== sort_url &&
       api.getArticles(sort_url, topic).then((articles) => {
         this.setState({ articles });
       });
-    } else if (prevProps.topic !== this.props.topic) {
-      const { sort_url } = this.state;
-      const { topic } = this.props;
+
+    prevProps.topic !== this.props.topic &&
       api.getArticles(sort_url, topic).then((articles) => {
         this.setState({ articles });
       });
-    }
   }
 
   render() {
     const { articles, article_url, sort_url } = this.state;
-    console.log(this.state);
-    console.log(this.props.topic, "DISPLAY");
-
     return (
       <div className="displaypage-container">
         <div className="content">
@@ -47,7 +42,6 @@ class DisplayPage extends Component {
               <Link
                 to={`/articles/votes/${article_url}`}
                 onClick={(e) => {
-                  console.log(e);
                   this.setState({ sort_url: "votes" });
                 }}
               >
@@ -117,7 +111,7 @@ class DisplayPage extends Component {
             )}
           </ul>
           <div className="content-area">
-            <Router className="Hello?">
+            <Router>
               {this.state.article_url !== "no_article" && (
                 <ArticleView
                   path={`/${sort_url}/${article_url}`}

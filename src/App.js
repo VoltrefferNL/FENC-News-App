@@ -14,6 +14,7 @@ class App extends Component {
       setTopic: "",
     };
   }
+
   setTopic(setTopic) {
     this.setState({ setTopic });
   }
@@ -23,7 +24,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        {console.log(this.state, "====== This is in app")}
         <MenuBar user={user} filterTopic={this.setTopic} />
         <Router className="main-router">
           <Homepage path="/" />

@@ -17,7 +17,7 @@ class ArticleView extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { article_url } = this.props;
-    if (prevProps.article_url !== article_url)
+    prevProps.article_url !== article_url &&
       api.getSelectedArticle(article_url).then((article) => {
         this.setState({ article });
       });
