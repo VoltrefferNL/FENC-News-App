@@ -82,8 +82,22 @@
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+}
+
+.menu-container ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu-container li {
+  margin-right: 1em;
+}
+
+.userInfo {
+  color: blue;
+  position: absolute;
+  right: 5%;
 }
 
 .article-card-holder {
