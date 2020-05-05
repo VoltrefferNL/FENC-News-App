@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
-import CommentForm from "./forms/CommentForm";
+import CommentForm from "./subcomponents/CommentForm";
+import Voter from "./subcomponents/Voter";
 
 class Comments extends Component {
   state = {
@@ -53,12 +54,8 @@ class Comments extends Component {
           ? comments.map(({ author, created_at, votes, body, comment_id }) => {
               return (
                 <div className="comment-card-holder" key={`${comment_id}`}>
-                  <div>
-                    <ul>
-                      <li>Up</li>
-                      <li>{votes}</li>
-                      <li>Down</li>
-                    </ul>
+                  <div className="comment-card-voting">
+                    <Voter votes={votes} comment_id={comment_id} />
                   </div>
                   <div className="comment-card-text">
                     <ul>

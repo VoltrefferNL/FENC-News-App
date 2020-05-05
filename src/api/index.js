@@ -47,3 +47,16 @@ export const deleteComment = (comment_id) => {
     return response;
   });
 };
+
+export const updateCommentVotes = ({ comment_id, voteAdjustment }) => {
+  return axios.patch(`${apiUrl}/comments/${comment_id}`, {
+    inc_votes: voteAdjustment,
+  });
+};
+
+export const updateArticleVotes = ({ article_id, voteAdjustment }) => {
+  console.log("HELLOOOOOOOOOOOOO");
+  return axios.patch(`${apiUrl}/articles/${article_id}`, {
+    inc_votes: voteAdjustment,
+  });
+};

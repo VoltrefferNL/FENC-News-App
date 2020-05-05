@@ -165,27 +165,28 @@
 .article-card-text {
   justify-content: left;
   text-align: left;
+  width: 90%;
 }
 
 .article-card-voting {
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.article-card-voting ul {
-  list-style: none;
-  text-align: center;
-}
-
-.article-card-voting li {
-  /* display: inline-block;
-  padding: 15px; */
+  width: 10%;
 }
 
 .comment-card-holder {
   display: flex;
   flex-direction: row;
+}
+
+.comment-card-voting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 10%;
 }
 
 .comment-card-holder ul {
@@ -195,4 +196,5 @@
 .comment-card-text {
   justify-content: left;
   text-align: left;
+  width: 90%;
 }

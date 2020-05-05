@@ -1,6 +1,7 @@
 import React from "react";
 import * as api from "../api";
 import Comments from "./Comments";
+import Voter from "./subcomponents/Voter";
 
 class ArticleView extends React.Component {
   state = {
@@ -40,11 +41,7 @@ class ArticleView extends React.Component {
       <div>
         <div className="article-card-holder">
           <div className="article-card-voting">
-            <ul>
-              <li>Up</li>
-              <li>{votes}</li>
-              <li>Down</li>
-            </ul>
+            <Voter votes={votes} article_id={article_id} />
           </div>
           <div className="article-card-text">
             <div>
