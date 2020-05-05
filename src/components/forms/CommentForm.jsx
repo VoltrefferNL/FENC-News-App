@@ -3,7 +3,6 @@ import * as api from "../../api";
 
 class CommentForm extends Component {
   state = {
-    user: "happyamy2016",
     body: "",
   };
 
@@ -12,20 +11,23 @@ class CommentForm extends Component {
     this.setState({ body: value });
   };
 
+  clear = () => {
+    this.setState({ body: "" });
+  };
+
   handleCommentSubmit = (e) => {
-    const { article_id } = this.props;
-    const { user, body } = this.state;
+    const { article_id, user } = this.props;
+    const { body } = this.state;
     e.preventDefault();
-    console.log(article_id, user, body);
     api
       .postNewComment(article_id, user, body)
       .then((newComment) => {
-        console.log(newComment);
         this.props.addNewCommentToState(newComment);
       })
       .catch((err) => {
         console.log(err);
       });
+    this.clear();
   };
 
   render() {

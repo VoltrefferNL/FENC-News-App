@@ -6,6 +6,7 @@ import ArticleView from "./ArticleView";
 
 class DisplayPage extends Component {
   state = {
+    isLoading: true,
     articles: [],
     sort_url: "",
   };
@@ -25,7 +26,7 @@ class DisplayPage extends Component {
 
   getArticles = (sort_url, topic) => {
     api.getArticles(sort_url, topic).then((articles) => {
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     });
   };
 
@@ -35,7 +36,7 @@ class DisplayPage extends Component {
   };
 
   render() {
-    const { articles } = this.state;
+    const { articles, isLoading } = this.state;
     console.log(this.props);
     return (
       <div className="displaypage-container">
@@ -61,40 +62,44 @@ class DisplayPage extends Component {
                 Comments
               </button>
             </div>
-            {articles.map(
-              ({
-                author,
-                title,
-                article_id,
-                topic,
-                created_at,
-                votes,
-                comment_count,
-              }) => {
-                return (
-                  <li key={article_id} className="article-list-card">
-                    <div className="article-list-card-text">
-                      <div>
-                        <p>Posted on: {created_at}</p>
-                      </div>
-                      <span>{<Link to={`${article_id}`}>{title}</Link>}</span>
+            {isLoading
+              ? "Loading..."
+              : articles.map(
+                  ({
+                    author,
+                    title,
+                    article_id,
+                    topic,
+                    created_at,
+                    votes,
+                    comment_count,
+                  }) => {
+                    return (
+                      <li key={article_id} className="article-list-card">
+                        <div className="article-list-card-text">
+                          <div>
+                            <p>Posted on: {created_at}</p>
+                          </div>
+                          <span>
+                            {<Link to={`${article_id}`}>{title}</Link>}
+                          </span>
 
-                      <div className="article-list-card-interactions">
-                        <span>
-                          <p>Topic: {utils.capitalizeFirstLetter(topic)}</p>
-                        </span>
-                        <span>
-                          <p>Comments: {comment_count}</p>
-                        </span>
-                        <div>
-                          <p>Votes: {votes}</p>
+                          <div className="article-list-card-interactions">
+                            <span>
+                              <p>Topic: {utils.capitalizeFirstLetter(topic)}</p>
+                            </span>
+                            <span>
+                              <p>Comments: {comment_count}</p>
+                            </span>
+                            <div>
+                              <p>Votes: {votes}</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </li>
-                );
-              }
-            )}
+                      </li>
+                    );
+                  }
+                )}
           </ul>
           <div className="content-area">
             <Router>

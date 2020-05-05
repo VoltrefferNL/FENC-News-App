@@ -41,3 +41,9 @@ export const postNewComment = (article_id, userName, body) => {
       return comment;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return axios.delete(`${apiUrl}/comments/${comment_id}`).then((response) => {
+    return response;
+  });
+};

@@ -21,14 +21,25 @@ class Comments extends Component {
     });
   };
 
+  deleteComment = (e) => {
+    const { value } = e.target;
+    api.deleteComment(value).then((response) => {
+      this.setState(({ comments }) => {
+        return {
+          comments: [...comments].filter(
+            (item) => item.comment_id !== Number(value)
+          ),
+        };
+      });
+    });
+  };
+
   render() {
     const { comments } = this.state;
     const { article_id, user } = this.props;
-    console.log(user, "THIS ONE IS FROM COMMENTS");
     return (
       <div className="Comment-template">
         <h2>Comments</h2>
-        <h3> Comment by $User$</h3>
         {user ? (
           <CommentForm
             addNewCommentToState={this.addNewCommentToState}
@@ -55,7 +66,16 @@ class Comments extends Component {
                       <li>
                         By {author} at {created_at}
                       </li>
-                      <li>{author === user && <button>delete</button>}</li>
+                      <li>
+                        {author === user && (
+                          <button
+                            value={comment_id}
+                            onClick={this.deleteComment}
+                          >
+                            delete
+                          </button>
+                        )}
+                      </li>
                     </ul>
                   </div>
                 </div>
