@@ -7,18 +7,19 @@ import ArticleView from "./ArticleView";
 class DisplayPage extends Component {
   state = {
     articles: [],
-    sort_url: "no_sort",
-    article_url: "no_article",
+    sort_url: "",
   };
 
   componentDidMount() {
-    this.getArticles();
+    const { sort_url } = this.state;
+    const { topic } = this.props;
+    this.getArticles(sort_url, topic);
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { sort_url } = this.state;
     const { topic } = this.props;
-    if (prevState.sort_url !== sort_url || prevProps.topic !== this.props.topic)
+    if (prevState.sort_url !== sort_url || prevProps.topic !== topic)
       this.getArticles(sort_url, topic);
   }
 
@@ -34,7 +35,8 @@ class DisplayPage extends Component {
   };
 
   render() {
-    const { articles, article_url, sort_url } = this.state;
+    const { articles } = this.state;
+    console.log(this.props);
     return (
       <div className="displaypage-container">
         <div className="content">
@@ -75,18 +77,7 @@ class DisplayPage extends Component {
                       <div>
                         <p>Posted on: {created_at}</p>
                       </div>
-                      <span>
-                        {
-                          <Link
-                            to={`/articles/${article_id}`}
-                            onClick={(e) => {
-                              this.setState({ article_url: article_id });
-                            }}
-                          >
-                            {title}
-                          </Link>
-                        }
-                      </span>
+                      <span>{<Link to={`${article_id}`}>{title}</Link>}</span>
 
                       <div className="article-list-card-interactions">
                         <span>
@@ -107,9 +98,7 @@ class DisplayPage extends Component {
           </ul>
           <div className="content-area">
             <Router>
-              {this.state.article_url !== "no_article" && (
-                <ArticleView path={`:article_id`} />
-              )}
+              <ArticleView path={`:article_id`} user={this.props.user} />
             </Router>
           </div>
         </div>

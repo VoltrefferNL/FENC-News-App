@@ -9,22 +9,25 @@ class ArticleView extends React.Component {
   };
 
   componentDidMount() {
-    const { article_url } = this.props;
-    api.getSelectedArticle(article_url).then((article) => {
+    const { article_id } = this.props;
+    api.getSelectedArticle(article_id).then((article) => {
       this.setState({ article });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { article_url } = this.props;
-    prevProps.article_url !== article_url &&
-      api.getSelectedArticle(article_url).then((article) => {
-        this.setState({ article });
-      });
+    const { article_id } = this.props;
+    prevProps.article_id !== article_id && this.getArticle(article_id);
   }
 
+  getArticle = (article_id) => {
+    api.getSelectedArticle(article_id).then((article) => {
+      this.setState({ article });
+    });
+  };
+
   render() {
-    const { article_url } = this.props;
+    const { article_id, user } = this.props;
     const {
       author,
       body,
@@ -54,7 +57,7 @@ class ArticleView extends React.Component {
             <div>Posted on {created_at}</div>
           </div>
         </div>
-        <Comments article_url={article_url} />
+        <Comments article_id={article_id} user={user} />
       </div>
     );
   }

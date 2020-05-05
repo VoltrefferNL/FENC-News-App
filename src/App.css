@@ -63,6 +63,7 @@
 
 .navigation {
   background-color: #333;
+  margin-bottom: 5px;
 }
 
 .navigation a {
@@ -167,13 +168,19 @@
 }
 
 .article-card-voting {
-  justify-content: space-between;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .article-card-voting ul {
   list-style: none;
-  justify-content: space-between;
+  text-align: center;
+}
+
+.article-card-voting li {
+  /* display: inline-block;
+  padding: 15px; */
 }
 
 .comment-card-holder {
@@ -183,4 +190,9 @@
 
 .comment-card-holder ul {
   list-style: none;
+}
+
+.comment-card-text {
+  justify-content: left;
+  text-align: left;
 }

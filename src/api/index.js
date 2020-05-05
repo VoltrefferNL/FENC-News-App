@@ -32,8 +32,12 @@ export const getComments = (article_id) => {
 };
 
 export const postNewComment = (article_id, userName, body) => {
-  return axios.post(`${apiUrl}/articles/${article_id}/comments`, {
-    username: userName,
-    body,
-  });
+  return axios
+    .post(`${apiUrl}/articles/${article_id}/comments`, {
+      username: userName,
+      body,
+    })
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
 };

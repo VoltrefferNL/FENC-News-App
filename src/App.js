@@ -7,24 +7,19 @@ import Homepage from "./components/Homepage";
 
 class App extends Component {
   state = {
-    user: "Niels",
-    setTopic: "",
-  };
-
-  setTopic = (setTopic) => {
-    this.setState({ setTopic });
+    userLoggedIn: "cooljmessy",
   };
 
   render() {
-    const { user, setTopic } = this.state;
+    const { userLoggedIn } = this.state;
 
     return (
       <div className="App">
-        <MenuBar user={user} filterTopic={this.setTopic} />
+        <MenuBar user={userLoggedIn} />
         <Router className="main-router">
           <Homepage path="/" />
-          <DisplayPage path="/articles/*" topic={setTopic} />
-          <DisplayPage path="/topic/:topic" />
+          <DisplayPage user={userLoggedIn} path="/articles/*" />
+          <DisplayPage user={userLoggedIn} path="/topic/:topic/*" />
         </Router>
       </div>
     );

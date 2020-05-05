@@ -13,12 +13,6 @@ class MenuBar extends Component {
     });
   }
 
-  handleChange(e) {
-    console.log(this);
-
-    this.props.history.push(`/${e.target.value}`);
-  }
-
   render() {
     const { user } = this.props;
     const { topics } = this.state;
@@ -31,15 +25,15 @@ class MenuBar extends Component {
           <div className="menu-container">
             <ul className="menu">
               <li className="menu-dropdown">
-                <div class="dropdown">
-                  <button class="dropbtn">
+                <div className="dropdown">
+                  <button className="dropbtn">
                     Choose your Topic
-                    <i class="fa fa-caret-down"></i>
+                    <i className="fa fa-caret-down"></i>
                   </button>
-                  <div class="dropdown-content">
+                  <div className="dropdown-content">
                     {topics.map(({ slug }) => {
                       return (
-                        <Link to={`/topic/${slug}`}>
+                        <Link to={`/topic/${slug}`} key={slug}>
                           {utils.capitalizeFirstLetter(slug)}
                         </Link>
                       );
