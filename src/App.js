@@ -6,18 +6,14 @@ import DisplayPage from "./components/DisplayPage";
 import Homepage from "./components/Homepage";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.setTopic = this.setTopic.bind(this);
-    this.state = {
-      user: "Niels",
-      setTopic: "",
-    };
-  }
+  state = {
+    user: "Niels",
+    setTopic: "",
+  };
 
-  setTopic(setTopic) {
+  setTopic = (setTopic) => {
     this.setState({ setTopic });
-  }
+  };
 
   render() {
     const { user, setTopic } = this.state;
@@ -28,6 +24,7 @@ class App extends Component {
         <Router className="main-router">
           <Homepage path="/" />
           <DisplayPage path="/articles/*" topic={setTopic} />
+          <DisplayPage path="/topic/:topic" />
         </Router>
       </div>
     );

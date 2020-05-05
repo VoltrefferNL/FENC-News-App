@@ -7,13 +7,16 @@ class MenuBar extends Component {
   state = { topics: [] };
 
   componentDidMount() {
+    console.log(this);
     api.getTopics().then((topics) => {
       this.setState({ topics });
     });
   }
 
-  handleChange(topic) {
-    this.props.filterTopic(topic);
+  handleChange(e) {
+    console.log(this);
+
+    this.props.history.push(`/${e.target.value}`);
   }
 
   render() {
@@ -28,21 +31,21 @@ class MenuBar extends Component {
           <div className="menu-container">
             <ul className="menu">
               <li className="menu-dropdown">
-                <select
-                  id="topics"
-                  onChange={(e) => {
-                    this.handleChange(e.target.value);
-                  }}
-                >
-                  <option value="">Choose your topic</option>
-                  {topics.map(({ slug }) => {
-                    return (
-                      <option key={slug} value={slug}>
-                        {utils.capitalizeFirstLetter(slug)}
-                      </option>
-                    );
-                  })}
-                </select>
+                <div class="dropdown">
+                  <button class="dropbtn">
+                    Choose your Topic
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    {topics.map(({ slug }) => {
+                      return (
+                        <Link to={`/topic/${slug}`}>
+                          {utils.capitalizeFirstLetter(slug)}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
               </li>
               <li className="menu-link">
                 <Link to="/">Home</Link>

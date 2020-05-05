@@ -41,30 +41,20 @@ class DisplayPage extends Component {
           <ul className="left-article-list">
             <div className="query-area">
               Sort by:
-              <button
-                id="votes"
-                value="votes"
-                onClick={(e) => {
-                  this.sortComments(e);
-                }}
-              >
+              <button id="votes" value="votes" onClick={this.sortComments}>
                 Votes
               </button>
               <button
                 id="created_at"
                 value="created_at"
-                onClick={(e) => {
-                  this.sortComments(e);
-                }}
+                onClick={this.sortComments}
               >
                 Date Created
               </button>
               <button
                 id="comment_count"
                 value="comment_count"
-                onClick={(e) => {
-                  this.sortComments(e);
-                }}
+                onClick={this.sortComments}
               >
                 Comments
               </button>
@@ -88,7 +78,7 @@ class DisplayPage extends Component {
                       <span>
                         {
                           <Link
-                            to={`/articles/${sort_url}/${article_id}`}
+                            to={`/articles/${article_id}`}
                             onClick={(e) => {
                               this.setState({ article_url: article_id });
                             }}
@@ -118,10 +108,7 @@ class DisplayPage extends Component {
           <div className="content-area">
             <Router>
               {this.state.article_url !== "no_article" && (
-                <ArticleView
-                  path={`/${sort_url}/${article_url}`}
-                  article_url={article_url}
-                />
+                <ArticleView path={`:article_id`} />
               )}
             </Router>
           </div>

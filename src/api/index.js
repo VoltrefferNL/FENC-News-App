@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = "https://nc-news-voltreffer.herokuapp.com/api/";
+const apiUrl = "https://nc-news-voltreffer.herokuapp.com/api";
 
 export const getTopics = () => {
   return axios.get(`${apiUrl}/topics`).then(({ data: { topics } }) => {
@@ -29,4 +29,11 @@ export const getComments = (article_id) => {
     .then(({ data: { comments } }) => {
       return comments;
     });
+};
+
+export const postNewComment = (article_id, userName, body) => {
+  return axios.post(`${apiUrl}/articles/${article_id}/comments`, {
+    username: userName,
+    body,
+  });
 };

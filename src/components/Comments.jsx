@@ -4,6 +4,8 @@ import * as api from "../api";
 class Comments extends Component {
   state = {
     comments: null,
+    body: "",
+    user: "happyamy2016",
   };
 
   componentDidMount() {
@@ -13,6 +15,20 @@ class Comments extends Component {
     });
   }
 
+  addNewComment = (e) => {
+    e.preventDefault();
+    const { article_url } = this.props;
+    const { user, body } = this.state;
+    api
+      .postNewComment(article_url, user, body)
+      .catch((err) => console.dir(err));
+  };
+
+  handleChange = (e) => {
+    const { value } = e.target;
+    this.setState({ body: value });
+  };
+
   render() {
     const { comments } = this.state;
     return (
@@ -21,7 +37,11 @@ class Comments extends Component {
         <h3> Comment by $User$</h3>
         <form method="post" onSubmit={(e) => this.addNewComment(e)}>
           <label>Comment:</label>
-          <textarea name="body" id="body"></textarea>
+          <textarea
+            name="body"
+            id="body"
+            onChange={this.handleChange}
+          ></textarea>
           <input
             type="submit"
             value="submitNewComment"
