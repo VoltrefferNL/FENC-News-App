@@ -49,14 +49,19 @@ class DisplayPage extends Component {
       <div className="content">
         <ul className="left-article-list">
           <div className="query-area">
-            Sort by:
-            <button id="votes" value="votes" onClick={this.sortComments}>
+            <button
+              id="votes"
+              value="votes"
+              onClick={this.sortComments}
+              className="btn btn--border"
+            >
               Votes
             </button>
             <button
               id="created_at"
               value="created_at"
               onClick={this.sortComments}
+              className="btn btn--border"
             >
               Date Created
             </button>
@@ -64,6 +69,7 @@ class DisplayPage extends Component {
               id="comment_count"
               value="comment_count"
               onClick={this.sortComments}
+              className="btn btn--border"
             >
               Comments
             </button>
