@@ -4,7 +4,6 @@ import { Router } from "@reach/router";
 import MenuBar from "./components/MenuBar";
 import DisplayPage from "./components/DisplayPage";
 import Homepage from "./components/Homepage";
-import ChooseArticleView from "./components/chooseArticleView";
 
 class App extends Component {
   state = {

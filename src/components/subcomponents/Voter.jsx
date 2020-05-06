@@ -34,13 +34,15 @@ class Voter extends Component {
     return (
       <div>
         <button
+          className="btn btn--border"
           onClick={() => this.handleUserVote(1)}
           disabled={userVote === 1}
         >
           +1
-        </button>
-        {this.props.votes + userVote}
+        </button>{" "}
+        Votes: {this.props.votes + userVote}{" "}
         <button
+          className="btn btn--border"
           onClick={() => this.handleUserVote(-1)}
           disabled={userVote === -1}
         >

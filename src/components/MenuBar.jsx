@@ -18,7 +18,7 @@ class MenuBar extends Component {
     return (
       <nav className="navigation">
         <div className="navigation-content">
-          <div className="logo">
+          <div className="logo padding">
             <Link to="/">NC News</Link>
           </div>
           <div className="menu-container">

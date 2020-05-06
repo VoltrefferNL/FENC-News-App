@@ -11,7 +11,7 @@ const Homepage = () => {
         <Link to={`/topic/coding/`} key="coding">
           <img src={codePicture} alt="coding" className="homepage-card-img" />
         </Link>
-        <div class="homepage-card-container">
+        <div className="homepage-card-container">
           <div className="underlined underlined--thick">
             <Link to={`/topic/coding/`} key="coding">
               Coding
@@ -19,7 +19,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div class="homepage-card">
+      <div className="homepage-card">
         <Link to={`/topic/cooking/`} key="football">
           <img
             src={cookingPicture}
@@ -27,7 +27,7 @@ const Homepage = () => {
             className="homepage-card-img"
           />
         </Link>
-        <div class="homepage-card-container">
+        <div className="homepage-card-container">
           <div className="underlined underlined--thick">
             <Link to={`/topic/cooking/`} key="cooking">
               Cooking
@@ -35,7 +35,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div class="homepage-card">
+      <div className="homepage-card">
         <Link to={`/topic/football/`} key="football">
           <img
             src={footballPicture}
@@ -43,7 +43,7 @@ const Homepage = () => {
             className="homepage-card-img"
           />
         </Link>
-        <div class="homepage-card-container">
+        <div className="homepage-card-container">
           <div className="underlined underlined--thick">
             <Link to={`/topic/football/`} key="football">
               Football

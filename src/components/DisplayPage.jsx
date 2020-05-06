@@ -5,6 +5,7 @@ import * as utils from "../utils";
 import ArticleView from "./ArticleView";
 import ErrorMessage from "./subcomponents/ErrorMessage";
 import ChooseArticleView from "./chooseArticleView";
+import SortButtons from "./subcomponents/sortButtons";
 
 class DisplayPage extends Component {
   state = {
@@ -48,32 +49,7 @@ class DisplayPage extends Component {
     return (
       <div className="content">
         <ul className="left-article-list">
-          <div className="query-area">
-            <button
-              id="votes"
-              value="votes"
-              onClick={this.sortComments}
-              className="btn btn--border"
-            >
-              Votes
-            </button>
-            <button
-              id="created_at"
-              value="created_at"
-              onClick={this.sortComments}
-              className="btn btn--border"
-            >
-              Date Created
-            </button>
-            <button
-              id="comment_count"
-              value="comment_count"
-              onClick={this.sortComments}
-              className="btn btn--border"
-            >
-              Comments
-            </button>
-          </div>
+          <SortButtons sortComments={this.sortComments} />
           {isLoading ? (
             "Loading..."
           ) : err ? (
