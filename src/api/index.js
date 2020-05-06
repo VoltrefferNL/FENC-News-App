@@ -48,15 +48,21 @@ export const deleteComment = (comment_id) => {
   });
 };
 
-export const updateCommentVotes = ({ comment_id, voteAdjustment }) => {
-  return axios.patch(`${apiUrl}/comments/${comment_id}`, {
-    inc_votes: voteAdjustment,
-  });
-};
-
-export const updateArticleVotes = ({ article_id, voteAdjustment }) => {
-  console.log("HELLOOOOOOOOOOOOO");
-  return axios.patch(`${apiUrl}/articles/${article_id}`, {
-    inc_votes: voteAdjustment,
-  });
+export const updateVotes = (article_id, comment_id, voteAdjustment) => {
+  console.log(article_id, comment_id, "In the api request");
+  return article_id
+    ? axios
+        .patch(`${apiUrl}/articlsaes/${article_id}`, {
+          inc_votes: voteAdjustment,
+        })
+        .then(({ data: { article } }) => {
+          return article;
+        })
+    : axios
+        .patch(`${apiUrl}/commentsas/${comment_id}`, {
+          inc_votes: voteAdjustment,
+        })
+        .then(({ data: { article } }) => {
+          return article;
+        });
 };

@@ -7,33 +7,45 @@ class Voter extends Component {
   handleUserVote = (voteAdjustment) => {
     const { article_id, comment_id } = this.props;
     console.log(article_id, comment_id);
-
-    article_id &&
-      api.updateArticleVotes({ article_id, voteAdjustment }).catch((error) => {
-        this.setState({ error });
-      });
-
-    comment_id &&
-      api
-        .updateCommentVotes({
-          comment_id,
-          voteAdjustment,
-        })
-        .catch((error) => {
-          this.setState({ error });
-        });
-
     this.setState((currentState) => {
       return { userVote: currentState.userVote + voteAdjustment };
     });
+
+    api
+      .updateVotes(
+        article_id ? article_id : null,
+        comment_id ? comment_id : null,
+        voteAdjustment
+      )
+      .catch((error) => {
+        this.setState((currentState) => {
+          return { userVote: currentState.userVote - voteAdjustment };
+        });
+      });
   };
 
+  componentDidUpdate(prevProps) {
+    const { article_id } = this.props;
+    prevProps.article_id !== article_id && this.setState({ userVote: 0 });
+  }
+
   render() {
+    const { userVote } = this.state;
     return (
       <div>
-        <button onClick={() => this.handleUserVote(1)}>+1</button>
-        {this.props.votes + this.state.userVote}
-        <button onClick={() => this.handleUserVote(-1)}>-1</button>
+        <button
+          onClick={() => this.handleUserVote(1)}
+          disabled={userVote === 1}
+        >
+          +1
+        </button>
+        {this.props.votes + userVote}
+        <button
+          onClick={() => this.handleUserVote(-1)}
+          disabled={userVote === -1}
+        >
+          -1
+        </button>
       </div>
     );
   }

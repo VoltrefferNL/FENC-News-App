@@ -7,7 +7,6 @@ class MenuBar extends Component {
   state = { topics: [] };
 
   componentDidMount() {
-    console.log(this);
     api.getTopics().then((topics) => {
       this.setState({ topics });
     });
@@ -33,7 +32,7 @@ class MenuBar extends Component {
                   <div className="dropdown-content">
                     {topics.map(({ slug }) => {
                       return (
-                        <Link to={`/topic/${slug}`} key={slug}>
+                        <Link to={`/topic/${slug}/`} key={slug}>
                           {utils.capitalizeFirstLetter(slug)}
                         </Link>
                       );

@@ -3,12 +3,15 @@ import { Router, Link } from "@reach/router";
 import * as api from "../api";
 import * as utils from "../utils";
 import ArticleView from "./ArticleView";
+import ErrorMessage from "./subcomponents/ErrorMessage";
+import ChooseArticleView from "./chooseArticleView";
 
 class DisplayPage extends Component {
   state = {
     isLoading: true,
     articles: [],
     sort_url: "",
+    err: null,
   };
 
   componentDidMount() {
@@ -25,9 +28,14 @@ class DisplayPage extends Component {
   }
 
   getArticles = (sort_url, topic) => {
-    api.getArticles(sort_url, topic).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    });
+    api
+      .getArticles(sort_url, topic)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false, err: null });
+      })
+      .catch((err) => {
+        this.setState({ isLoading: false, err: err.response.data.msg });
+      });
   };
 
   sortComments = (event) => {
@@ -36,7 +44,7 @@ class DisplayPage extends Component {
   };
 
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, err } = this.state;
     console.log(this.props);
     return (
       <div className="displaypage-container">
@@ -62,47 +70,50 @@ class DisplayPage extends Component {
                 Comments
               </button>
             </div>
-            {isLoading
-              ? "Loading..."
-              : articles.map(
-                  ({
-                    author,
-                    title,
-                    article_id,
-                    topic,
-                    created_at,
-                    votes,
-                    comment_count,
-                  }) => {
-                    return (
-                      <li key={article_id} className="article-list-card">
-                        <div className="article-list-card-text">
-                          <div>
-                            <p>Posted on: {created_at}</p>
-                          </div>
-                          <span>
-                            {<Link to={`${article_id}`}>{title}</Link>}
-                          </span>
+            {isLoading ? (
+              "Loading..."
+            ) : err ? (
+              <ErrorMessage err={err} />
+            ) : (
+              articles.map(
+                ({
+                  author,
+                  title,
+                  article_id,
+                  topic,
+                  created_at,
+                  votes,
+                  comment_count,
+                }) => {
+                  return (
+                    <li key={article_id} className="article-list-card">
+                      <div className="article-list-card-text">
+                        <div>
+                          <p>Posted on: {created_at}</p>
+                        </div>
+                        <span>{<Link to={`${article_id}`}>{title}</Link>}</span>
 
-                          <div className="article-list-card-interactions">
-                            <span>
-                              <p>Topic: {utils.capitalizeFirstLetter(topic)}</p>
-                            </span>
-                            <span>
-                              <p>Comments: {comment_count}</p>
-                            </span>
-                            <div>
-                              <p>Votes: {votes}</p>
-                            </div>
+                        <div className="article-list-card-interactions">
+                          <span>
+                            <p>Topic: {utils.capitalizeFirstLetter(topic)}</p>
+                          </span>
+                          <span>
+                            <p>Comments: {comment_count}</p>
+                          </span>
+                          <div>
+                            <p>Votes: {votes}</p>
                           </div>
                         </div>
-                      </li>
-                    );
-                  }
-                )}
+                      </div>
+                    </li>
+                  );
+                }
+              )
+            )}
           </ul>
           <div className="content-area">
             <Router>
+              <ChooseArticleView path="/" />
               <ArticleView path={`:article_id`} user={this.props.user} />
             </Router>
           </div>
