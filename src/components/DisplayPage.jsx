@@ -45,53 +45,63 @@ class DisplayPage extends Component {
 
   render() {
     const { articles, isLoading, err } = this.state;
-    console.log(this.props);
     return (
-      <div className="displaypage-container">
-        <div className="content">
-          <ul className="left-article-list">
-            <div className="query-area">
-              Sort by:
-              <button id="votes" value="votes" onClick={this.sortComments}>
-                Votes
-              </button>
-              <button
-                id="created_at"
-                value="created_at"
-                onClick={this.sortComments}
-              >
-                Date Created
-              </button>
-              <button
-                id="comment_count"
-                value="comment_count"
-                onClick={this.sortComments}
-              >
-                Comments
-              </button>
-            </div>
-            {isLoading ? (
-              "Loading..."
-            ) : err ? (
-              <ErrorMessage err={err} />
-            ) : (
-              articles.map(
-                ({
-                  author,
-                  title,
-                  article_id,
-                  topic,
-                  created_at,
-                  votes,
-                  comment_count,
-                }) => {
-                  return (
-                    <li key={article_id} className="article-list-card">
-                      <div className="article-list-card-text">
+      <div className="content">
+        <ul className="left-article-list">
+          <div className="query-area">
+            Sort by:
+            <button id="votes" value="votes" onClick={this.sortComments}>
+              Votes
+            </button>
+            <button
+              id="created_at"
+              value="created_at"
+              onClick={this.sortComments}
+            >
+              Date Created
+            </button>
+            <button
+              id="comment_count"
+              value="comment_count"
+              onClick={this.sortComments}
+            >
+              Comments
+            </button>
+          </div>
+          {isLoading ? (
+            "Loading..."
+          ) : err ? (
+            <ErrorMessage err={err} />
+          ) : (
+            articles.map(
+              ({
+                author,
+                title,
+                article_id,
+                topic,
+                created_at,
+                votes,
+                comment_count,
+              }) => {
+                return (
+                  <li key={article_id} className="article-list-card">
+                    <div className="article-list-card-text">
+                      <div className="article-list-card-border">
                         <div>
-                          <p>Posted on: {created_at}</p>
+                          <p className="sublines-text">
+                            Posted on: {created_at}
+                          </p>
                         </div>
-                        <span>{<Link to={`${article_id}`}>{title}</Link>}</span>
+                        <span>
+                          {
+                            <Link
+                              to={`${article_id}`}
+                              className="underlined underlined--thick"
+                            >
+                              {title}
+                            </Link>
+                          }
+                        </span>
 
                         <div className="article-list-card-interactions">
                           <span>
@@ -105,19 +115,19 @@ class DisplayPage extends Component {
                           </div>
                         </div>
                       </div>
-                    </li>
-                  );
-                }
-              )
-            )}
-          </ul>
-          <div className="content-area">
-            <Router>
-              <ChooseArticleView path="/" />
-              <ArticleView path={`:article_id`} user={this.props.user} />
-            </Router>
-          </div>
-        </div>
+                    </div>
+                  </li>
+                );
+              }
+            )
+          )}
+        </ul>
+        <ul className="content-area">
+          <Router>
+            <ChooseArticleView path="/" />
+            <ArticleView path={`:article_id`} user={this.props.user} />
+          </Router>
+        </ul>
       </div>
     );
   }
