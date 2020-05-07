@@ -65,13 +65,14 @@ class DisplayPage extends Component {
                 votes,
                 comment_count,
               }) => {
+                const timeFormatter = new Date(created_at).toDateString();
                 return (
                   <li key={article_id} className="article-list-card">
                     <div className="article-list-card-text">
                       <div className="article-list-card-border">
                         <div>
                           <p className="sublines-text">
-                            Posted on: {created_at}
+                            Posted on: {timeFormatter}
                           </p>
                         </div>
                         <span>

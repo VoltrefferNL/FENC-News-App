@@ -45,6 +45,7 @@ class ArticleView extends React.Component {
       votes,
       created_at,
     } = this.state.article;
+    const timeFormatter = new Date(created_at).toDateString();
     return err ? (
       <ErrorMessage err={err} />
     ) : isLoading ? (
@@ -54,12 +55,12 @@ class ArticleView extends React.Component {
         <div className="article-card-holder">
           <div className="article-card-text">
             <div className="article-card-text-top-row">
-              <div className="black">{author}</div>
-              <div className="topic-article">
+              <div className="black voter">{author}</div>
+              <div className="topic-article voter">
                 {utils.capitalizeFirstLetter(topic)}
               </div>
-              <div className="date-article">{created_at}</div>
-              <div className="date-article">
+              <div className="date-article voter">{timeFormatter}</div>
+              <div className="date-article voter">
                 <Voter votes={votes} article_id={article_id} />
               </div>
             </div>

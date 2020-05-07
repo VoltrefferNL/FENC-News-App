@@ -1,0 +1,14 @@
+            <ul>
+                    <li>{body}</li>
+                    <li>
+                      By {author} at {timeFormatter}
+                      {author === user && (
+                        <button value={comment_id} onClick={this.deleteComment}>
+                          delete
+                        </button>
+                      )}
+                    </li>
+                    <li>
+                      <Voter votes={votes} comment_id={comment_id} />
+                    </li>
+                  </ul>

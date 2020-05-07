@@ -46,40 +46,48 @@ class Comments extends Component {
     const { comments, err } = this.state;
     const { article_id, user } = this.props;
     return (
-      <div className="Comment-template">
-        <h2>Comments</h2>
-        {user ? (
-          <CommentForm
-            addNewCommentToState={this.addNewCommentToState}
-            article_id={article_id}
-            user={user}
-          />
-        ) : (
-          "Log in to comment"
-        )}
+      <div className="comment-template">
+        <div>
+          {user ? (
+            <CommentForm
+              addNewCommentToState={this.addNewCommentToState}
+              article_id={article_id}
+              user={user}
+            />
+          ) : (
+            "Log in to comment"
+          )}
+        </div>
+
         {err ? (
           <ErrorMessage err={err} />
         ) : comments ? (
           comments.map(({ author, created_at, votes, body, comment_id }) => {
+            const timeFormatter = new Date(created_at).toDateString();
             return (
               <div className="comment-card-holder" key={`${comment_id}`}>
-                <div className="comment-card-voting">
-                  <Voter votes={votes} comment_id={comment_id} />
-                </div>
                 <div className="comment-card-text">
-                  <ul>
-                    <li>{body}</li>
-                    <li>
-                      By {author} at {created_at}
-                    </li>
-                    <li>
-                      {author === user && (
-                        <button value={comment_id} onClick={this.deleteComment}>
-                          delete
-                        </button>
-                      )}
-                    </li>
-                  </ul>
+                  <div>
+                    <div className="comment-card-bottom-row">
+                      <div className="black voter">{author}</div>
+                      <div className="date-article voter"> {timeFormatter}</div>
+                      <div className="delete-comment voter">
+                        {author === user && (
+                          <button
+                            className="btn btn--border"
+                            value={comment_id}
+                            onClick={this.deleteComment}
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </div>
+                      <div className="voter">
+                        <Voter votes={votes} comment_id={comment_id} />
+                      </div>
+                    </div>
+                    <div className="comment-card-body-row">{body}</div>
+                  </div>
                 </div>
               </div>
             );

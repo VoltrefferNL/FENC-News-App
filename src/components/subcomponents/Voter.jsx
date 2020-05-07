@@ -32,22 +32,26 @@ class Voter extends Component {
   render() {
     const { userVote } = this.state;
     return (
-      <div>
-        <button
-          className="btn btn--border"
-          onClick={() => this.handleUserVote(1)}
-          disabled={userVote === 1}
-        >
-          +1
-        </button>{" "}
-        Votes: {this.props.votes + userVote}{" "}
-        <button
-          className="btn btn--border"
-          onClick={() => this.handleUserVote(-1)}
-          disabled={userVote === -1}
-        >
-          -1
-        </button>
+      <div className="voter-row">
+        <div>
+          <button
+            className="btn btn--border"
+            onClick={() => this.handleUserVote(1)}
+            disabled={userVote === 1}
+          >
+            +1
+          </button>
+        </div>
+        <div className="voter-center-votes">{this.props.votes + userVote} </div>
+        <div>
+          <button
+            className="btn btn--border"
+            onClick={() => this.handleUserVote(-1)}
+            disabled={userVote === -1}
+          >
+            -1
+          </button>
+        </div>
       </div>
     );
   }

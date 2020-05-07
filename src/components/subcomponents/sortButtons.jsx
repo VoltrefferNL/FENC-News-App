@@ -1,4 +1,10 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faComments,
+  faHeart,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SortButtons = (props) => {
   const { sortComments } = props;
@@ -10,7 +16,7 @@ const SortButtons = (props) => {
         onClick={sortComments}
         className="btn btn--border"
       >
-        Votes
+        <FontAwesomeIcon icon={faHeart} /> Votes
       </button>
       <button
         id="created_at"
@@ -18,7 +24,7 @@ const SortButtons = (props) => {
         onClick={sortComments}
         className="btn btn--border"
       >
-        Date Created
+        <FontAwesomeIcon icon={faClock} /> Date Created
       </button>
       <button
         id="comment_count"
@@ -26,7 +32,7 @@ const SortButtons = (props) => {
         onClick={sortComments}
         className="btn btn--border"
       >
-        Comments
+        <FontAwesomeIcon icon={faComments} /> Comments
       </button>
     </div>
   );

@@ -32,15 +32,29 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <form method="post" onSubmit={(e) => this.handleCommentSubmit(e)}>
-        <label>Comment:</label>
-        <textarea name="body" id="body" onChange={this.handleChange}></textarea>
-        <input
-          type="submit"
-          value="submitNewComment"
-          name="submitNewComment"
-        ></input>
-      </form>
+      <div>
+        <form method="post" onSubmit={(e) => this.handleCommentSubmit(e)}>
+          <div className="row">
+            <div className="col-25">
+              <label>Add a comment</label>
+            </div>
+            <div className="col-75">
+              <textarea
+                name="body"
+                id="body"
+                onChange={this.handleChange}
+              ></textarea>
+            </div>
+          </div>
+          <div className="row">
+            <input
+              type="submit"
+              value="Submit Comment"
+              name="submitNewComment"
+            ></input>
+          </div>
+        </form>
+      </div>
     );
   }
 }

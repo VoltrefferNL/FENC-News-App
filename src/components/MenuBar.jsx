@@ -22,11 +22,11 @@ class MenuBar extends Component {
             <Link to="/">NC News</Link>
           </div>
           <div className="menu-container">
-            <ul className="menu">
+            <ul className="menu voter">
               <li className="menu-dropdown">
                 <div className="dropdown">
                   <button className="dropbtn">
-                    Choose your Topic
+                    Topics
                     <i className="fa fa-caret-down"></i>
                   </button>
                   <div className="dropdown-content">
@@ -48,7 +48,7 @@ class MenuBar extends Component {
               </li>
             </ul>
           </div>
-          <div className="userInfo">Welcome {user}</div>
+          <div className="userInfo voter">Welcome {user}</div>
         </div>
       </nav>
     );
