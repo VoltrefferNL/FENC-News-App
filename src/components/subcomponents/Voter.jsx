@@ -6,7 +6,6 @@ class Voter extends Component {
 
   handleUserVote = (voteAdjustment) => {
     const { article_id, comment_id } = this.props;
-    console.log(article_id, comment_id);
     this.setState((currentState) => {
       return { userVote: currentState.userVote + voteAdjustment };
     });

@@ -7,7 +7,7 @@ import { Link } from "@reach/router";
 const Homepage = () => {
   return (
     <div className="homepage-container">
-      <div class="homepage-card">
+      <div className="homepage-card">
         <Link to={`/topic/coding/`} key="coding">
           <img src={codePicture} alt="coding" className="homepage-card-img" />
         </Link>

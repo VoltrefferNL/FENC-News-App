@@ -49,7 +49,6 @@ export const deleteComment = (comment_id) => {
 };
 
 export const updateVotes = (article_id, comment_id, voteAdjustment) => {
-  console.log(article_id, comment_id, "In the api request");
   return article_id
     ? axios
         .patch(`${apiUrl}/articles/${article_id}`, {
