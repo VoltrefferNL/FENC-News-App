@@ -48,7 +48,9 @@ class MenuBar extends Component {
               </li>
             </ul>
           </div>
-          <div className="userInfo voter">Welcome {user}</div>
+          <div className="userInfo voter">
+            Welcome <b>{user}</b>
+          </div>
         </div>
       </nav>
     );

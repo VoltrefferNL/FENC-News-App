@@ -24,8 +24,9 @@ class DisplayPage extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { sort_url } = this.state;
     const { topic } = this.props;
-    if (prevState.sort_url !== sort_url || prevProps.topic !== topic)
+    if (prevState.sort_url !== sort_url || prevProps.topic !== topic) {
       this.getArticles(sort_url, topic);
+    }
   }
 
   getArticles = (sort_url, topic) => {
@@ -72,7 +73,7 @@ class DisplayPage extends Component {
                       <div className="article-list-card-border">
                         <div>
                           <p className="sublines-text">
-                            Posted on: {timeFormatter}
+                            Posted by {author} on {timeFormatter}
                           </p>
                         </div>
                         <span>

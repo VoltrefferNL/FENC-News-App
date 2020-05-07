@@ -152,9 +152,6 @@
 }
 
 .userInfo {
-  color: blue;
-  position: relative;
-  float: right;
   margin-right: 5%;
 }
 
@@ -501,6 +498,9 @@ input[type="submit"] {
 @media (max-width: 830px) {
   .left-article-list {
     width: 95%;
+  }
+  .voter:last-of-type {
+    margin-left: auto;
   }
 }
 @media (max-width: 1700px) {

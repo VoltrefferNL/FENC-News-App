@@ -13,7 +13,8 @@ class ArticleView extends React.Component {
     isLoading: true,
   };
 
-  getArticle = (article_id) => {
+  getArticle = () => {
+    const { article_id } = this.props;
     api
       .getSelectedArticle(article_id)
       .then((article) => {
@@ -25,13 +26,12 @@ class ArticleView extends React.Component {
   };
 
   componentDidMount() {
-    const { article_id } = this.props;
-    this.getArticle(article_id);
+    this.getArticle();
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
-    prevProps.article_id !== article_id && this.getArticle(article_id);
+    prevProps.article_id !== article_id && this.getArticle();
   }
 
   render() {

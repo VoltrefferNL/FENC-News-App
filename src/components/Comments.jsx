@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import CommentForm from "./subcomponents/CommentForm";
-import Voter from "./subcomponents/Voter";
+import CommentsList from "./subcomponents/CommentsList";
 import ErrorMessage from "./subcomponents/ErrorMessage";
 
 class Comments extends Component {
@@ -9,6 +9,7 @@ class Comments extends Component {
     comments: null,
     body: "",
     err: null,
+    isLoading: true,
   };
 
   componentDidMount() {
@@ -16,7 +17,7 @@ class Comments extends Component {
     api
       .getComments(article_id)
       .then((comments) => {
-        this.setState({ comments });
+        this.setState({ comments, isLoading: false });
       })
       .catch((err) => {
         this.setState({ err: err.response.data.msg });
@@ -43,7 +44,7 @@ class Comments extends Component {
   };
 
   render() {
-    const { comments, err } = this.state;
+    const { comments, err, isLoading } = this.state;
     const { article_id, user } = this.props;
     return (
       <div className="comment-template">
@@ -58,42 +59,21 @@ class Comments extends Component {
             "Log in to comment"
           )}
         </div>
-
-        {err ? (
+        {isLoading ? (
+          "Loading..."
+        ) : err ? (
           <ErrorMessage err={err} />
-        ) : comments ? (
-          comments.map(({ author, created_at, votes, body, comment_id }) => {
-            const timeFormatter = new Date(created_at).toDateString();
+        ) : (
+          comments.map((comment) => {
             return (
-              <div className="comment-card-holder" key={`${comment_id}`}>
-                <div className="comment-card-text">
-                  <div>
-                    <div className="comment-card-bottom-row">
-                      <div className="black voter">{author}</div>
-                      <div className="date-article voter"> {timeFormatter}</div>
-                      <div className="delete-comment voter">
-                        {author === user && (
-                          <button
-                            className="btn btn--border"
-                            value={comment_id}
-                            onClick={this.deleteComment}
-                          >
-                            Delete
-                          </button>
-                        )}
-                      </div>
-                      <div className="voter">
-                        <Voter votes={votes} comment_id={comment_id} />
-                      </div>
-                    </div>
-                    <div className="comment-card-body-row">{body}</div>
-                  </div>
-                </div>
-              </div>
+              <CommentsList
+                key={comment.comment_id}
+                comment={comment}
+                user={user}
+                deleteComment={this.deleteComment}
+              />
             );
           })
-        ) : (
-          "Loading..."
         )}
       </div>
     );
