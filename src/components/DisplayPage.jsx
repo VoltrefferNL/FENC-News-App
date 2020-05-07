@@ -46,11 +46,11 @@ class DisplayPage extends Component {
   };
 
   render() {
-    const { articles, isLoading, err } = this.state;
+    const { articles, isLoading, err, sort_url } = this.state;
     return (
       <div className="content">
         <ul className="left-article-list">
-          <SortButtons sortComments={this.sortComments} />
+          <SortButtons sortComments={this.sortComments} sort_url={sort_url} />
           {isLoading ? (
             "Loading..."
           ) : err ? (

@@ -7,14 +7,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SortButtons = (props) => {
-  const { sortComments } = props;
+  const { sortComments, sort_url } = props;
+  console.log(props);
   return (
     <div className="query-area">
       <button
         id="votes"
         value="votes"
         onClick={sortComments}
-        className="btn btn--border"
+        className={
+          sort_url === "votes" ? "btn btn--border selected" : "btn btn--border"
+        }
       >
         <FontAwesomeIcon icon={faHeart} /> Votes
       </button>
@@ -22,7 +25,11 @@ const SortButtons = (props) => {
         id="created_at"
         value="created_at"
         onClick={sortComments}
-        className="btn btn--border"
+        className={
+          sort_url === "created_at"
+            ? "btn btn--border selected"
+            : "btn btn--border"
+        }
       >
         <FontAwesomeIcon icon={faClock} /> Date Created
       </button>
@@ -30,7 +37,11 @@ const SortButtons = (props) => {
         id="comment_count"
         value="comment_count"
         onClick={sortComments}
-        className="btn btn--border"
+        className={
+          sort_url === "comment_count"
+            ? "btn btn--border selected"
+            : "btn btn--border"
+        }
       >
         <FontAwesomeIcon icon={faComments} /> Comments
       </button>

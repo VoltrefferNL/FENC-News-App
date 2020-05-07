@@ -332,6 +332,10 @@
   transform: translatey(5px);
 }
 
+.selected {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
 .voter-row {
   display: flex;
   flex-direction: row;
