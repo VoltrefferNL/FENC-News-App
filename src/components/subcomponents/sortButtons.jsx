@@ -8,7 +8,6 @@ import {
 
 const SortButtons = (props) => {
   const { sortComments, sort_url } = props;
-  console.log(props);
   return (
     <div className="query-area">
       <button

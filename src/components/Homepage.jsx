@@ -1,58 +1,28 @@
-import React from "react";
-import codePicture from "./images/code.jpg";
-import footballPicture from "./images/football.jpg";
-import cookingPicture from "./images/cooking.jpg";
-import { Link } from "@reach/router";
+import React, { Component } from "react";
 
-const Homepage = () => {
-  return (
-    <div className="homepage-container">
-      <div className="homepage-card">
-        <Link to={`/topic/coding/`} key="coding">
-          <img src={codePicture} alt="coding" className="homepage-card-img" />
-        </Link>
-        <div className="homepage-card-container">
-          <div className="underlined underlined--thick">
-            <Link to={`/topic/coding/`} key="coding">
-              Coding
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="homepage-card">
-        <Link to={`/topic/cooking/`} key="football">
-          <img
-            src={cookingPicture}
-            alt="cooking"
-            className="homepage-card-img"
-          />
-        </Link>
-        <div className="homepage-card-container">
-          <div className="underlined underlined--thick">
-            <Link to={`/topic/cooking/`} key="cooking">
-              Cooking
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="homepage-card">
-        <Link to={`/topic/football/`} key="football">
-          <img
-            src={footballPicture}
-            alt="football"
-            className="homepage-card-img"
-          />
-        </Link>
-        <div className="homepage-card-container">
-          <div className="underlined underlined--thick">
-            <Link to={`/topic/football/`} key="football">
-              Football
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+import * as api from "../api";
+import HomepageCard from "./subcomponents/HomepageCard";
 
+class Homepage extends Component {
+  state = { topics: [], isLoading: true };
+
+  componentDidMount() {
+    api.getTopics().then((topics) => {
+      this.setState({ topics, isLoading: false });
+    });
+  }
+
+  render() {
+    const { isLoading, topics } = this.state;
+    return isLoading ? (
+      "Loading..."
+    ) : (
+      <div className="homepage-container">
+        {topics.map(({ slug }) => {
+          return <HomepageCard key={slug} slug={slug} />;
+        })}
+      </div>
+    );
+  }
+}
 export default Homepage;
