@@ -61,7 +61,7 @@ export const updateVotes = (article_id, comment_id, voteAdjustment) => {
         .patch(`${apiUrl}/comments/${comment_id}`, {
           inc_votes: voteAdjustment,
         })
-        .then(({ data: { article } }) => {
-          return article;
+        .then(({ data: { comment } }) => {
+          return comment;
         });
 };

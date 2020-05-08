@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import CommentForm from "./subcomponents/CommentForm";
-import CommentsList from "./subcomponents/CommentsList";
+import CommentsCard from "./subcomponents/CommentsCard";
 import ErrorMessage from "./subcomponents/ErrorMessage";
 
 class Comments extends Component {
@@ -66,7 +66,7 @@ class Comments extends Component {
         ) : (
           comments.map((comment) => {
             return (
-              <CommentsList
+              <CommentsCard
                 key={comment.comment_id}
                 comment={comment}
                 user={user}

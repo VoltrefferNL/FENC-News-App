@@ -1,7 +1,7 @@
 import React from "react";
 import Voter from "./Voter";
 
-const CommentsList = (props) => {
+const CommentsCard = (props) => {
   const { created_at, comment_id, author, votes, body } = props.comment;
   const { user, deleteComment } = props;
 
@@ -35,4 +35,4 @@ const CommentsList = (props) => {
   );
 };
 
-export default CommentsList;
+export default CommentsCard;
