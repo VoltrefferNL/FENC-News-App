@@ -31,7 +31,7 @@ class ArticleView extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
-    prevProps.article_id !== article_id && this.getArticle();
+    if (prevProps.article_id !== article_id) this.getArticle();
   }
 
   render() {
