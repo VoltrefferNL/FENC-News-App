@@ -34,7 +34,9 @@ class Voter extends Component {
       <div className="voter-row">
         <div>
           <button
-            className="btn btn--border"
+            className={
+              userVote === 1 ? "btn btn--border selected" : "btn btn--border"
+            }
             onClick={() => this.handleUserVote(1)}
             disabled={userVote === 1}
           >
@@ -44,7 +46,9 @@ class Voter extends Component {
         <div className="voter-center-votes">{this.props.votes + userVote} </div>
         <div>
           <button
-            className="btn btn--border"
+            className={
+              userVote === -1 ? "btn btn--border selected" : "btn btn--border"
+            }
             onClick={() => this.handleUserVote(-1)}
             disabled={userVote === -1}
           >

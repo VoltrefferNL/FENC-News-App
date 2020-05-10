@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 import * as api from "../api";
 import HomepageCard from "./subcomponents/HomepageCard";
+import LoadingMessage from "../components/subcomponents/LoadingMessage";
 
 class Homepage extends Component {
   state = { topics: [], isLoading: true };
@@ -14,9 +14,8 @@ class Homepage extends Component {
 
   render() {
     const { isLoading, topics } = this.state;
-    return isLoading ? (
-      "Loading..."
-    ) : (
+    if (isLoading) return <LoadingMessage />;
+    return (
       <div className="homepage-container">
         {topics.map(({ slug }) => {
           return <HomepageCard key={slug} slug={slug} />;

@@ -3,6 +3,7 @@ import * as api from "../api";
 import CommentForm from "./subcomponents/CommentForm";
 import CommentsCard from "./subcomponents/CommentsCard";
 import ErrorMessage from "./subcomponents/ErrorMessage";
+import LoadingMessage from "./subcomponents/LoadingMessage";
 
 class Comments extends Component {
   state = {
@@ -46,6 +47,7 @@ class Comments extends Component {
   render() {
     const { comments, err, isLoading } = this.state;
     const { article_id, user } = this.props;
+
     return (
       <div className="comment-template">
         <div>
@@ -60,7 +62,7 @@ class Comments extends Component {
           )}
         </div>
         {isLoading ? (
-          "Loading..."
+          <LoadingMessage />
         ) : err ? (
           <ErrorMessage err={err} />
         ) : (
