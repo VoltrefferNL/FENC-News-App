@@ -1,5 +1,5 @@
 import React from "react";
-import Voter from "./Voter";
+import Voter from "../buttons/Voter";
 
 const CommentsCard = (props) => {
   const { created_at, comment_id, author, votes, body } = props.comment;

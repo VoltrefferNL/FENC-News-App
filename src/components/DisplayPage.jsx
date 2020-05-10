@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import * as api from "../api";
 import ArticleView from "./ArticleView";
-
 import ChooseArticleView from "./chooseArticleView";
-import SortButtons from "./subcomponents/sortButtons";
-import ArticleListCard from "./subcomponents/ArticleListCard";
+import SortButtonsForArticles from "./buttons/SortButtonsForArticles";
+import ArticleListCard from "./cards/ArticleListCard";
 
 class DisplayPage extends Component {
   state = {
@@ -40,7 +39,7 @@ class DisplayPage extends Component {
       });
   };
 
-  sortComments = (event) => {
+  sortArticles = (event) => {
     const { value } = event.target;
     this.setState({ sort_url: value });
   };
@@ -50,7 +49,10 @@ class DisplayPage extends Component {
     return (
       <div className="content">
         <div className="left-article-list">
-          <SortButtons sortComments={this.sortComments} sort_url={sort_url} />
+          <SortButtonsForArticles
+            sortArticles={this.sortArticles}
+            sort_url={sort_url}
+          />
           <ArticleListCard
             articles={articles}
             isLoading={isLoading}

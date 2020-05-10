@@ -1,6 +1,6 @@
 import React from "react";
 import * as utils from "../../utils";
-import Voter from "./Voter";
+import Voter from "../buttons/Voter";
 
 const ArticleCard = (props) => {
   const { author, body, title, topic, votes, created_at } = props.article;

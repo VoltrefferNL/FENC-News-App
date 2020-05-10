@@ -4,7 +4,7 @@ import { Router } from "@reach/router";
 import MenuBar from "./components/MenuBar";
 import DisplayPage from "./components/DisplayPage";
 import Homepage from "./components/Homepage";
-import ErrorMessage from "./components/subcomponents/ErrorMessage";
+import ErrorMessage from "./components/messages/ErrorMessage";
 
 class App extends Component {
   state = {

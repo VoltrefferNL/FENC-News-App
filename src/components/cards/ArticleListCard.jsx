@@ -1,13 +1,13 @@
 import React from "react";
 import * as utils from "../../utils";
 import { Link } from "@reach/router";
-import ErrorMessage from "./ErrorMessage";
-import LoadingMessage from "./LoadingMessage";
+import ErrorMessage from "../messages/ErrorMessage";
+import LoadingMessage from "../messages/LoadingMessage";
 
 const ArticleListCard = (props) => {
   const { articles, isLoading, err } = props;
   if (isLoading) return <LoadingMessage />;
-  else if (err) return <ErrorMessage err={err} />;
+  if (err) return <ErrorMessage err={err} />;
   else
     return articles.map(
       ({

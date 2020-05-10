@@ -23,9 +23,9 @@ export const getSelectedArticle = (article_id) => {
     });
 };
 
-export const getComments = (article_id) => {
+export const getComments = (article_id, sort_by) => {
   return axios
-    .get(`${apiUrl}/articles/${article_id}/comments`)
+    .get(`${apiUrl}/articles/${article_id}/comments`, { params: { sort_by } })
     .then(({ data: { comments } }) => {
       return comments;
     });

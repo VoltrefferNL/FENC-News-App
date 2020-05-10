@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import * as api from "../api";
-import CommentForm from "./subcomponents/CommentForm";
-import CommentsCard from "./subcomponents/CommentsCard";
-import ErrorMessage from "./subcomponents/ErrorMessage";
-import LoadingMessage from "./subcomponents/LoadingMessage";
+import CommentForm from "./forms/CommentForm";
+import CommentsCard from "./cards/CommentsCard";
+import ErrorMessage from "./messages/ErrorMessage";
+import LoadingMessage from "./messages/LoadingMessage";
+import SortButtonsForComments from "./buttons/sortButtonsForComments";
 
 class Comments extends Component {
   state = {
@@ -11,19 +12,37 @@ class Comments extends Component {
     body: "",
     err: null,
     isLoading: true,
+    sort_url: "",
   };
 
   componentDidMount() {
+    const { sort_url } = this.state;
+    this.getComments(sort_url);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { article_id } = this.props;
+    const { sort_url } = this.state;
+    if (prevProps.article_id !== article_id || prevState.sort_url !== sort_url)
+      this.getComments(sort_url);
+  }
+
+  getComments = (sort_url) => {
     const { article_id } = this.props;
     api
-      .getComments(article_id)
+      .getComments(article_id, sort_url)
       .then((comments) => {
-        this.setState({ comments, isLoading: false });
+        this.setState({ comments, isLoading: false, err: null });
       })
       .catch((err) => {
         this.setState({ err: err.response.data.msg });
       });
-  }
+  };
+
+  sortComments = (event) => {
+    const { value } = event.target;
+    this.setState({ sort_url: value });
+  };
 
   addNewCommentToState = (newComment) => {
     this.setState(({ comments }) => {
@@ -45,9 +64,9 @@ class Comments extends Component {
   };
 
   render() {
-    const { comments, err, isLoading } = this.state;
+    const { comments, err, isLoading, sort_url } = this.state;
     const { article_id, user } = this.props;
-
+    console.log(article_id);
     return (
       <div className="comment-template">
         <div>
@@ -60,6 +79,12 @@ class Comments extends Component {
           ) : (
             "Log in to comment"
           )}
+        </div>
+        <div>
+          <SortButtonsForComments
+            sortArticles={this.sortComments}
+            sort_url={sort_url}
+          />
         </div>
         {isLoading ? (
           <LoadingMessage />

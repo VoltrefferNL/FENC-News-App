@@ -6,14 +6,14 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
-const SortButtons = (props) => {
-  const { sortComments, sort_url } = props;
+const SortButtonsForArticles = (props) => {
+  const { sortArticles, sort_url } = props;
   return (
     <div className="query-area">
       <button
         id="votes"
         value="votes"
-        onClick={sortComments}
+        onClick={sortArticles}
         className={
           sort_url === "votes" ? "btn btn--border selected" : "btn btn--border"
         }
@@ -23,7 +23,7 @@ const SortButtons = (props) => {
       <button
         id="created_at"
         value="created_at"
-        onClick={sortComments}
+        onClick={sortArticles}
         className={
           sort_url === "created_at"
             ? "btn btn--border selected"
@@ -35,7 +35,7 @@ const SortButtons = (props) => {
       <button
         id="comment_count"
         value="comment_count"
-        onClick={sortComments}
+        onClick={sortArticles}
         className={
           sort_url === "comment_count"
             ? "btn btn--border selected"
@@ -48,4 +48,4 @@ const SortButtons = (props) => {
   );
 };
 
-export default SortButtons;
+export default SortButtonsForArticles;

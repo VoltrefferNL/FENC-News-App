@@ -1,9 +1,9 @@
 import React from "react";
 import * as api from "../api";
 import Comments from "./Comments";
-import ErrorMessage from "./subcomponents/ErrorMessage";
-import LoadingMessage from "./subcomponents/LoadingMessage";
-import ArticleCard from "./subcomponents/ArticleCard";
+import ErrorMessage from "./messages/ErrorMessage";
+import LoadingMessage from "./messages/LoadingMessage";
+import ArticleCard from "./cards/ArticleCard";
 
 class ArticleView extends React.Component {
   state = {
@@ -31,21 +31,27 @@ class ArticleView extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
+
     if (prevProps.article_id !== article_id) this.getArticle();
   }
 
   render() {
     const { err, isLoading, article } = this.state;
     const { article_id, user } = this.props;
-    if (isLoading) return <LoadingMessage />;
-    else if (err) return <ErrorMessage err={err} />;
-    else
+    if (isLoading) {
+      return <LoadingMessage />;
+    }
+    if (err) {
+      return <ErrorMessage err={err} />;
+    } else {
       return (
-        <>
+        <div>
           <ArticleCard article={article} article_id={article_id} />
           <Comments article_id={article_id} user={user} />
-        </>
+        </div>
       );
+    }
   }
 }
+
 export default ArticleView;
