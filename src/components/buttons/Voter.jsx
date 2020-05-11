@@ -9,7 +9,7 @@ class Voter extends Component {
     this.setState((currentState) => {
       return { userVote: currentState.userVote + voteAdjustment };
     });
-
+    console.log(article_id);
     api
       .updateVotes(
         article_id ? article_id : null,

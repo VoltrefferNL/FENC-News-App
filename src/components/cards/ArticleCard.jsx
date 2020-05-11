@@ -4,7 +4,8 @@ import Voter from "../buttons/Voter";
 
 const ArticleCard = (props) => {
   const { author, body, title, topic, votes, created_at } = props.article;
-  const { article_id } = props.article_id;
+  const { article_id } = props;
+  console.log(article_id);
   const timeFormatter = new Date(created_at).toDateString();
   return (
     <div className="article-card-holder">
