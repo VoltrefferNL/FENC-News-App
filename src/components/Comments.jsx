@@ -21,8 +21,12 @@ class Comments extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
     const { sort_url } = this.state;
-    if (prevProps.article_id !== article_id || prevState.sort_url !== sort_url)
+    if (
+      prevProps.article_id !== article_id ||
+      prevState.sort_url !== sort_url
+    ) {
       this.getComments(sort_url);
+    }
   }
 
   getComments = (sort_url) => {
@@ -64,7 +68,6 @@ class Comments extends Component {
   render() {
     const { comments, err, isLoading, sort_url } = this.state;
     const { article_id, user } = this.props;
-    console.log(article_id);
     return (
       <div className="comment-template">
         <div>
@@ -91,7 +94,6 @@ class Comments extends Component {
           isLoading={isLoading}
           err={err}
         />
-        )}
       </div>
     );
   }

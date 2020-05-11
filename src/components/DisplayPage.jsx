@@ -5,6 +5,7 @@ import ArticleView from "./ArticleView";
 import ChooseArticleView from "./chooseArticleView";
 import SortButtonsForArticles from "./buttons/SortButtonsForArticles";
 import ArticleListCard from "./cards/ArticleListCard";
+import TopicButton from "./buttons/TopicButton";
 
 class DisplayPage extends Component {
   state = {
@@ -46,9 +47,11 @@ class DisplayPage extends Component {
 
   render() {
     const { articles, isLoading, err, sort_url } = this.state;
+    const { topic } = this.props;
     return (
       <div className="content">
         <div className="left-article-list">
+          <TopicButton topic={topic} />
           <SortButtonsForArticles
             sortArticles={this.sortArticles}
             sort_url={sort_url}
