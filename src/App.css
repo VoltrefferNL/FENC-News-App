@@ -364,6 +364,7 @@
   line-height: 1.4em;
   padding: 1px;
 }
+
 .voter:last-of-type {
   margin-left: auto;
 }

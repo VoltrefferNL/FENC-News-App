@@ -2,7 +2,7 @@
 
 You can view a live version of this project [here](https://fenc-news-app.netlify.app)
 
-NC News is a reddit-copy that allows a user to view a list of articles, comment & vote on them and sort articles according to creation time, votes and amount of comments.
+NC News is a reddit-copy that allows a user to view a list of articles, comment & vote on them and sort articles according to creation time, votes and amount of comments. Please note that this app requieres Node v13.8 as a minimum.
 
 The back end can be found here: [github](https://github.com/VoltrefferNL/BENC-News-App).
 
@@ -14,6 +14,12 @@ Make a clone of the project by copy/pasting the below in your terminal:
 
 ```bash
 git clone https://github.com/VoltrefferNL/FENC-News-App
+```
+
+Move into the app folder like so:
+
+```bash
+cd FENC-News-App
 ```
 
 Install the project dependencies:
