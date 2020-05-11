@@ -4,6 +4,7 @@ import * as api from "../../api";
 class CommentForm extends Component {
   state = {
     body: "",
+    err: "",
   };
 
   handleChange = (e) => {
@@ -25,7 +26,9 @@ class CommentForm extends Component {
         this.props.addNewCommentToState(newComment);
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({
+          err: "There was a problem submitting your comment.",
+        });
       });
     this.clear();
   };
