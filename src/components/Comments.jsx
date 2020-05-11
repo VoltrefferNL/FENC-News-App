@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import * as api from "../api";
 import CommentForm from "./forms/CommentForm";
 import CommentsCard from "./cards/CommentsCard";
-import ErrorMessage from "./messages/ErrorMessage";
-import LoadingMessage from "./messages/LoadingMessage";
 import SortButtonsForComments from "./buttons/sortButtonsForComments";
 
 class Comments extends Component {
@@ -86,21 +84,13 @@ class Comments extends Component {
             sort_url={sort_url}
           />
         </div>
-        {isLoading ? (
-          <LoadingMessage />
-        ) : err ? (
-          <ErrorMessage err={err} />
-        ) : (
-          comments.map((comment) => {
-            return (
-              <CommentsCard
-                key={comment.comment_id}
-                comment={comment}
-                user={user}
-                deleteComment={this.deleteComment}
-              />
-            );
-          })
+        <CommentsCard
+          comments={comments}
+          user={user}
+          deleteComment={this.deleteComment}
+          isLoading={isLoading}
+          err={err}
+        />
         )}
       </div>
     );
